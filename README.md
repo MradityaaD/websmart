@@ -52,23 +52,22 @@
 ## 🖼 Tampilan
 
 ### Beranda
-![Beranda](screenshots/beranda.png)
+![Beranda](beranda.png)
 
 ### Materi
-![Materi](screenshots/materi.png)
+![Materi](materi.png)
 
 ### Lobi Kuis
-![Lobi Kuis](screenshots/lobi-kuis.png)
+![Lobi Kuis](lobi-kuis.png)
 
 ### Artikel
-![Artikel](screenshots/artikel.png)
+![Artikel](artikel.png)
 
 ### Komunitas
-![Komunitas](screenshots/komunitas.png)
+![Komunitas](komunitas.png)
 
 ### Profil
-![Profil](screenshots/profil.png)
-
+![Profil](profil.png)
 ---
 
 ## 🛠 Teknologi
