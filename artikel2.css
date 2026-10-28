@@ -1,0 +1,123 @@
+/* Header Judul Garis Atas */
+.recommended-header {
+    border-top: 2px solid #222; /* Garis tebel mirip koran barat */
+    margin-top: 60px; /* Jarak dari konten di atasnya */
+    padding-top: 20px;
+    margin-bottom: 25px;
+}
+.recommended-header h4 {
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+
+/* Teknik "CSS GRID" untuk pembagian gak rata. */
+
+.recommended-grid {
+    display: grid;
+    /*
+       fr = fraction (bagian). 
+       bikin 3 kolom. 
+       Kolom ke-1 dikasih 2 bagian (Paling besar).
+       Kolom ke-2 dikasih 1.5 bagian (Sedang).
+       Kolom ke-3 dikasih 1 bagian (Paling kecil).
+     */
+    grid-template-columns: 2fr 1.5fr 1fr; 
+    gap: 30px; /* Jarak antar kolom */
+}
+
+
+   /* STYLING KOLOM 1 & 2 (Punya Gambar) */
+
+.rec-col-large img, 
+.rec-col-medium img {
+    width: 100%;
+    aspect-ratio: 16/9; 
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+
+/* UKURAN FONT KOLOM KIRI (LEBIH BESAR) */
+.rec-col-large h2 {
+    font-size: 28px;
+    margin: 10px 0;
+    line-height: 1.2;
+}
+.rec-col-large p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* UKURAN FONT KOLOM TENGAH (MEDIUM) */
+.rec-col-medium h2 {
+    font-size: 22px;
+    margin: 10px 0;
+    line-height: 1.2;
+}
+.rec-col-medium p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+   /* STYLING KOLOM 3 KANAN (TUMPUKAN TEKS)  */
+.rec-col-small {
+    display: flex;
+    flex-direction: column; /* berjejer ke bawah menumpuk (vertikal) */
+}
+
+/* Padding masing-masing kotak kecil yang ditumpuk */
+.mini-article {
+    padding: 20px 0;
+}
+
+/* garis pembatas */
+.border-top {
+    border-top: 1px solid #ddd;
+}
+
+
+.mini-article h3 {
+    font-size: 18px;
+    margin: 8px 0;
+    line-height: 1.3;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT (HP & TABLET)
+   ========================================= */
+@media (max-width: 1024px) {
+    .recommended-grid {
+        grid-template-columns: 1fr 1fr; /* 2 kolom, tumpukan mini pindah ke bawah */
+    }
+    .rec-col-small {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .recommended-header {
+        margin-top: 40px;
+    }
+    .recommended-grid {
+        grid-template-columns: 1fr; /* Asalnya 3 kolom, jadi 1 numpuk atas-bawah */
+        gap: 25px;
+    }
+    .rec-col-large h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    .rec-col-large h2 {
+        font-size: 21px;
+    }
+    .rec-col-medium h2 {
+        font-size: 19px;
+    }
+}

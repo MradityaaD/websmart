@@ -1,0 +1,184 @@
+/* KERANGKA DASAR KOMUNITAS (3 KOLOM) */
+
+.komunitas-container {
+    display: grid;
+    /* Pembagian 3 Kolom: Kiri (20%), Tengah (55%), Kanan (20%), sisa 5% untuk jarak gap */
+    grid-template-columns: 20% 55% 20%; 
+    gap: 2.5%;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* KOTAK PUTUS-PUTUS BIAR KELIHATAN KERANGKANYA (Wireframe Mode) */
+.kiri-topik, .tengah-feed, .kanan-hot {
+    border: 2px dashed #999;
+    padding: 20px;
+}
+
+.box-title {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* 1. KOLOM KIRI (Topik Diskusi) */
+.topik-list {
+    list-style: none; /* Buang titik peluru */
+}
+.topik-list li {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.topik-list li.active {
+    background-color: #eee;
+    border: 1px solid #333;
+    font-weight: bold;
+}
+
+/* 2. KOLOM TENGAH (Feed Utama) */
+.buat-post-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.user-avatar {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%; /* Bikin bundar sempurna */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.buat-post-box input {
+    flex: 1; /* Penuhin sisa ruang di antara foto profil dan tombol kirim */
+    min-width: 0; /* Biar input bisa mengecil di layar sempit */
+    padding: 10px;
+    border: 1px solid #333;
+}
+.btn-kirim {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.garis-pemisah {
+    border-top: 2px solid #333;
+    margin-bottom: 20px;
+}
+
+/* RAHASIA KOTAK MELAR (<details> tag CSS) */
+.post-card {
+    border: 1px solid #333;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Bagian JUDUL yang selalu kelihatan dan jadi pelatuk (trigger) klik */
+.post-summary {
+    cursor: pointer; /* Kursor jadi ikon tangan biar orang tau bisa di-klik */
+    list-style: none; /* Ngebuang panah hitam default bawaan browser biar rapi */
+}
+/* Ekstra kode untuk ngebuang panah di browser Chrome/Safari */
+.post-summary::-webkit-details-marker {
+    display: none;
+}
+
+.post-header {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.time {
+    color: #666;
+}
+.post-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: blue;
+}
+
+/* Isi konten DAGING yang cuma muncul pas judul di-klik */
+.post-content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #999; /* Garis pemisah antara judul dan isi */
+}
+.post-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.komentar-section {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+.komentar-item {
+    margin-top: 10px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 10px;
+}
+
+/* 3. KOLOM KANAN (Hot Threads Ala Kaskus) */
+.hot-item {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.hot-item h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.hot-item span {
+    font-size: 12px;
+    color: #666;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT (HP & TABLET)
+   ========================================= */
+@media (max-width: 1200px) {
+    .komunitas-container {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); /* Topik di kiri, feed di kanan */
+        gap: 20px;
+    }
+    .kanan-hot {
+        grid-column: 1 / -1; /* Hot Threads pindah ke bawah, selebar layar */
+    }
+}
+
+@media (max-width: 768px) {
+    .komunitas-container {
+        grid-template-columns: minmax(0, 1fr); /* 3 kolom jadi 1 numpuk atas bawah */
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 640px) {
+    .kiri-topik, .tengah-feed, .kanan-hot {
+        padding: 14px;
+    }
+    .post-card {
+        padding: 12px;
+    }
+    .post-title {
+        font-size: 16px;
+    }
+    .btn-kirim {
+        padding: 10px 14px;
+    }
+}
+
+.tengah-feed, .kiri-topik, .kanan-hot {
+    min-width: 0;
+    overflow-wrap: anywhere; /* Teks panjang gak bikin kotak melebar keluar layar */
+}

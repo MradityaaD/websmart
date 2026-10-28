@@ -1,0 +1,248 @@
+/* KERANGKA DASAR HALAMAN KUIS (Minimalis Murni) */
+
+.quiz-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* 
+   1. quiz_awal.php
+*/
+
+.lobi-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.quotes-plenger {
+    font-style: italic;
+    color: #555;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #333;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+/* Grid Pilihan Mapel */
+.mapel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.mapel-card {
+    border: 2px solid #333;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+.mapel-card:hover {
+    background-color: #eee;
+}
+/* Card kalau kekunci */
+.mapel-card.disabled {
+    border-color: #ccc;
+    color: #999;
+    cursor: not-allowed;
+    background-color: #fafafa;
+}
+
+/* 
+   2. quiz.php
+
+   TIMER CSS MURNI (TANPA JS)
+
+*/
+
+.timer-container {
+    background-color: #eee;
+    border: 2px solid #333;
+    height: 40px;
+    margin-bottom: 30px;
+    position: sticky; /* Nempel di atas layar pas di-scroll */
+    top: 0;
+    position: relative; /* Buat patokan teks di tengah */
+}
+
+.timer-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #4CAF50;
+    /* 600s = 10 Menit. forwards = biar berenti pas abis, gak ngulang */
+    animation: shrinkTimer 600s linear forwards; 
+}
+
+/* Biar teksnya melayang di tengah-tengah warna */
+.timer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* nengahin elemen */
+    font-weight: bold;
+    color: #000;
+}
+
+/* Keyframes Animasi: Dari ijo (penuh) -> kuning -> merah (habis) */
+@keyframes shrinkTimer {
+    0% { width: 100%; background-color: #4CAF50; }
+    50% { background-color: #FFC107; }
+    100% { width: 0%; background-color: #F44336; }
+}
+
+.soal-box {
+    margin-bottom: 30px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 20px;
+}
+.soal-text {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.opsi-jawaban label {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.opsi-jawaban label:hover {
+    background-color: #f9f9f9;
+}
+
+.btn-kumpul {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.btn-kumpul:hover {
+    background-color: #000;
+}
+
+/* 
+   3. quiz_hasil.php
+*/
+
+.hasil-box {
+    text-align: center;
+    border: 3px solid #333;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+.nilai-angka {
+    font-size: 60px;
+    font-weight: bold;
+    color: blue;
+    margin: 10px 0;
+}
+
+/* Kotak Koreksi */
+.koreksi-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.salah-item {
+    color: red;
+    margin-bottom: 15px;
+}
+.pembahasan {
+    color: #333;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 3px solid green;
+    margin-top: 5px;
+}
+
+/* Leaderboard Bot */
+.leaderboard-box {
+    border: 2px dashed #999;
+    padding: 20px;
+}
+.rank-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+/* Visualisasi Panggung Juara */
+.rank-item.top-1 { font-weight: bold; font-size: 18px; color: #b8860b; background-color: #fff9e6; } /* Emas */
+.rank-item.top-2 { font-weight: bold; color: #708090; background-color: #f5f5f5; } /* Perak */
+.rank-item.top-3 { font-weight: bold; color: #cd7f32; background-color: #fdf5e6; } /* Perunggu */
+.rank-item.me { border-left: 5px solid blue; background-color: #e6f2ff; } /* Kotak Khusus Punya User */
+
+/* =========================================
+   RESPONSIVE LAYOUT (HP & TABLET)
+   ========================================= */
+@media (max-width: 768px) {
+    .quiz-container {
+        margin: 20px auto;
+    }
+    .mapel-grid {
+        grid-template-columns: 1fr; /* Pilihan kuis numpuk atas bawah */
+    }
+    .soal-box {
+        padding: 15px; /* Kurangin ukuran padding kotak biar muat di HP */
+    }
+    .hasil-box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .quiz-container {
+        padding: 14px;
+    }
+    .lobi-header h1 {
+        font-size: 24px;
+    }
+    .mapel-card {
+        padding: 20px;
+    }
+    .timer-text {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+    .soal-text {
+        font-size: 16px;
+    }
+    .nilai-angka {
+        font-size: 48px;
+    }
+    .leaderboard-box {
+        padding: 10px;
+    }
+    .rank-item {
+        padding: 12px 8px;
+        gap: 10px;
+        font-size: 14px;
+    }
+}
+
+.quotes-plenger {
+    max-width: 100%;
+}
+.rank-item {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+@media (max-width: 360px) {
+    .quiz-container {
+        padding: 10px;
+    }
+    .nilai-angka {
+        font-size: 40px;
+    }
+    .btn-kumpul {
+        font-size: 16px;
+        padding: 12px;
+    }
+}

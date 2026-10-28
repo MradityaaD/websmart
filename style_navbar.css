@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Biar lebar + padding gak bikin elemen melebar keluar layar */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Gambar, video, dan iframe gak boleh lebih lebar dari wadahnya */
+img, video, iframe {
+    max-width: 100%;
+}
+
+/* Buat ngereset pinggiran layar biar mentok */
+body {
+    margin: 0;
+    overflow-x: hidden; /* Jaring pengaman: halaman gak bisa geser ke samping di HP */
+}
+html {
+    -webkit-text-size-adjust: 100%; /* Cegah browser HP nge-zoom ukuran teks sendiri */
+}
+
+/* 1. BUNGKUSAN UTAMA NAVBAR */
+.navbar {
+    display: flex; /* Ini kunci utama biar susunannya jadi nyamping mas bro */
+    justify-content: space-between; /* Biar logonya kepentok ke kiri, menunya kepentok ke kanan */
+    /* Di layar super lebar, isi navbar dibatasi 1400px & ditengahin biar sejajar sama konten */
+    padding: 12px max(24px, calc((100% - 1400px) / 2));
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2); /* Efek bayangan / shadow murni */
+    align-items: center; /* Teksnya rata tengah sama menu dan tombolnya */
+}
+
+/* 2. BUNGKUSAN MENU LIST (UL) */
+.nav-links {
+    display: flex; /* Biar list-nya yang asalnya atas-bawah jadi nyamping */
+    gap: 20px; /* Jarak antar menu biar gak nempel banget */
+    list-style: none; /* Buang titik-titik bulet item bawaan HTML (Biar rapi dikit) */
+    align-items: center; /* Teksnya rata tengah sama tombolnya */
+}
+
+/* LOGO: "to" berwarna biru */
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+.logo span {
+    color: #007bff;
+}
+
+/* LINK MENU UTAMA: tanpa garis bawah, abu gelap */
+.nav-links > li > a {
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+}
+.nav-links > li > a:hover {
+    color: #007bff;
+}
+
+/* 3. TOMBOL */
+.btn-login {
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: auto;           /* Ukuran tombol ngikutin teksnya aja */
+    white-space: nowrap;   /* Teks tombol gak pecah jadi 2 baris */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+    transition: all 0.3s ease; /* Transisi mulus pas disorot mouse */
+}
+.btn-login:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Efek tombol melayang naik */
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.5);
+}
+
+
+/* =========================================
+   4. LOGIKA MEGA MENU (POP UP MATERI)
+   ========================================= */
+
+/* A. Wadah Tombol (Ini tempat bersauhnya si Pop Up) */
+.dropdown-wrapper {
+    position: relative; /* Menahan Pop Up biar jatuhnya pas di bawah tombol ini, bukan terbang entah ke mana */
+}
+.dropdown-btn {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Pop Up */
+.mega-menu {
+    display: none; /* MENGHILANG! Ini kunci ilusi pertamanya */
+    position: absolute; /* Lepas dari aturan bumi HTML, ngambang/numpuk di atas konten lain */
+    top: 100%; /* Jatuh persis di bawah tombol */
+    left: 50%; /* Titik tengah pop up = titik tengah tombol Materi */
+    
+    /* biar gak kepotong, dan ada di tengah */
+    transform: translateX(-50%); /* Jurus wajib nempatin persis di tengah udel tombol Materi */
+
+    background-color: white; /* Biar gak tembus pandang tabrakan sama huruf di belakangnya */
+    border: 1px solid #333; /* Gaya wireframe */
+    padding: 20px;
+    gap: 40px; /* Jarak antar kolom */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 100; /* PENTING: Biar gak kalah tumpuk sama gambar/konten di bawahnya */
+}
+
+/* Bacanya: Kalau .dropdown-wrapper kesentuh mouse (:hover), tolong munculin .mega-menu di dalemnya jadi wujud Flexbox */
+.dropdown-wrapper:hover .mega-menu,
+.dropdown-wrapper:focus-within .mega-menu { /* focus-within = biar jalan juga pas di-tap di HP */
+    display: flex; /* menampilkan dalam wujud flexbox (horizontal) */
+}
+
+/* Styling Daleman Mega Menu (3 Kolom Berjejer) */
+.menu-col {
+    display: flex;
+    flex-direction: column; /* elemen ditumpuk ke bawah (vertikal) */
+    gap: 15px;
+    min-width: 150px;
+}
+.menu-col h4 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+.menu-item {
+    font-size: 14px;
+}
+.menu-item.active {
+    color: black;
+    font-weight: bold;
+}
+/* Sengaja pudar biar ngasih tau user "Ini belum dibikin / kekunci" sesuai MVP lu */
+.menu-item.disabled {
+    color: #aaa; 
+}
+.menu-item.clickable {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+.menu-item.clickable:hover {
+    color: #007bff;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT (HP & TABLET)
+   ========================================= */
+@media (max-width: 1100px) {
+    .nav-links {
+        gap: 14px; /* Laptop kecil: jarak menu dirapetin biar muat 1 baris */
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column; /* Tumpuk logo sama menu ke bawah */
+        gap: 10px;
+        padding: 12px 16px;
+        position: relative; /* Patokan buat pop up menu Materi */
+    }
+    .nav-links {
+        flex-wrap: wrap; /* Kalau layar sempit, menu turun ke baris baru */
+        justify-content: center;
+        gap: 10px 18px;
+        width: 100%;
+    }
+    .nav-links > li > a {
+        font-size: 14px;
+    }
+
+    /* Tombol Profil / Masuk turun ke baris sendiri biar lega */
+    .nav-links > li:last-child {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-links > li:last-child > a {
+        display: inline-block;
+        width: auto; /* Gak melebar lagi, ngikutin ukuran tombolnya */
+    }
+    .btn-login {
+        width: auto;
+        font-size: 13px;
+        padding: 7px 18px; /* Tombol kecil & ramping di HP */
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0, 123, 255, 0.35);
+    }
+
+    /* Pop up Materi: nongol sebagai panel di bawah navbar, gak ngedorong menu lain */
+    .dropdown-wrapper {
+        position: static;
+    }
+    .mega-menu {
+        left: 0;
+        right: 0;
+        transform: none;
+        width: auto;
+        max-height: 70vh;
+        overflow-y: auto; /* Kalau layarnya pendek, panelnya bisa di-scroll */
+        border-width: 1px 0;
+        text-align: left;
+    }
+    .dropdown-wrapper:hover .mega-menu,
+    .dropdown-wrapper:focus-within .mega-menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+    .menu-col {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .logo {
+        font-size: 20px;
+    }
+    .nav-links {
+        gap: 8px 14px;
+    }
+    .nav-links > li > a {
+        font-size: 13px;
+    }
+    .btn-login {
+        font-size: 12.5px;
+        padding: 6px 16px;
+    }
+}
+
+/* HP layar sangat kecil (<= 360px) */
+@media (max-width: 360px) {
+    .navbar {
+        padding: 10px 10px;
+    }
+    .logo {
+        font-size: 18px;
+    }
+    .nav-links {
+        gap: 6px 10px;
+    }
+    .nav-links > li > a {
+        font-size: 12px;
+    }
+    .btn-login {
+        font-size: 12px;
+        padding: 6px 14px;
+    }
+    .mega-menu {
+        padding: 14px;
+    }
+}

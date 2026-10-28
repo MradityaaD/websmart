@@ -1,0 +1,152 @@
+/* =========================================
+   KERANGKA DASAR HALAMAN MATERI (2 KOLOM)
+   ========================================= */
+
+/* CONTAINER UTAMA (Dibelah Dua Pake CSS Grid) */
+.materi-container {
+    display: grid;
+    /* Kunci Sihir Grid: 
+       Kiri (Sidebar) dipatok pasti 300px, 
+       Kanan (Konten Utama) disuruh ngambil sisa layarnya (1fr) 
+    */
+    grid-template-columns: 300px 1fr;
+    max-width: 1400px;
+    margin: 40px auto; /* Agak didorong ke bawah biar gak nempel navbar */
+    gap: 30px;
+    padding: 20px;
+}
+
+/* KOTAK PUTUS-PUTUS BIAR KELIHATAN BINGKAINYA (Wireframe Mode) */
+.sidebar, .main-content {
+    border: 2px dashed #999;
+    padding: 20px;
+}
+
+/* -----------------------------------------
+   1. SIDEBAR (Kolom Kiri)
+   ----------------------------------------- */
+.sidebar-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.bab-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+/* Bab yang lagi dibuka */
+.bab-item.active {
+    border-color: blue;
+}
+/* Bab yang dikunci (Sesuai Konsep MVP / Gak bisa di-klik) */
+.bab-item.disabled {
+    color: #999;
+    background-color: #f9f9f9;
+}
+.bab-item ul {
+    list-style: none; /* Buang titik-titik hitam HTML */
+    padding-left: 15px;
+    margin-top: 10px;
+}
+.bab-item li {
+    margin-bottom: 8px;
+}
+.bab-item a {
+    text-decoration: none;
+    color: blue;
+}
+
+/* -----------------------------------------
+   2. MAIN CONTENT (Kolom Kanan)
+   ----------------------------------------- */
+.content-header {
+    margin-bottom: 20px;
+}
+.content-header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+/* TEMPAT BERTENGGERNYA VIDEO YOUTUBE */
+.video-embed {
+    width: 100%;
+    aspect-ratio: 16/9; /* Kunci sihir biar rasio videonya pas kayak layar bioskop/TV, gak gepeng */
+    background-color: #eee; 
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center; /* Nengahin teks placeholder */
+    align-items: center; /* Nengahin teks placeholder */
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Area Teks Penjelasan */
+.content-description {
+    border-top: 1px solid #ccc; /* Garis pemisah atas */
+    padding-top: 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Tombol Aksi */
+.content-actions {
+    display: flex;
+    gap: 15px;
+}
+.content-actions button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT (HP & TABLET)
+   ========================================= */
+@media (max-width: 1024px) {
+    .materi-container {
+        grid-template-columns: 240px 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 800px) {
+    .materi-container {
+        grid-template-columns: 1fr; /* Sidebar dan Konten numpuk atas bawah */
+        margin: 20px auto;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sidebar, .main-content {
+        padding: 14px;
+    }
+    .content-header h1 {
+        font-size: 22px;
+    }
+    .content-actions {
+        flex-direction: column; /* Tombol numpuk dan selebar layar */
+    }
+    .content-actions button {
+        width: 100%;
+    }
+}
+
+.sidebar, .main-content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.video-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+@media (max-width: 360px) {
+    .materi-container {
+        padding: 8px;
+    }
+    .bab-item {
+        padding: 10px;
+    }
+}

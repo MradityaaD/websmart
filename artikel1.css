@@ -1,0 +1,205 @@
+/* WADAH KERTAS UTAMA */
+.container {
+    max-width: 1200px; /* Lebar maksimal konten, biar kalau layarnya super gede, beritanya gak melar ke ujung-ujung */
+    margin: 40px auto; /* 40px jarak atas-bawah. "auto" itu sihir biar posisinya pas di tengah-tengah layar kiri-kanannya */
+    padding: 0 20px; /* Kasih celah dalam sedikit biar teks gak nabrak aspal monitor */
+}
+
+
+/* 1. ARTIKEL UTAMA */
+.featured-article {
+    display: flex; /* Bikin kolom teks dan kolom gambar berjejer nyamping */
+    gap: 50px; /* Jarak yang luas antara teks dan gambar biar mata nyaman (Whitespace concept) */
+    align-items: center; /* Bikin posisi tinggi teks pas di tengah-tengah tinggi gambar */
+}
+
+/* Membagi jatah ruang 50% Teks, 50% Gambar */
+.featured-text {
+    flex: 1; 
+}
+.featured-image {
+    flex: 1; 
+}
+
+.featured-image img {
+    width: 100%; /* Gambarnya dipaksa menuhin 50% jatah ruangnya tadi */
+    height: auto;
+}
+
+/* --- TIPOGRAFI --- */
+.category {
+    color: red; 
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px; /* jarak antar huruf (horizontal) */
+}
+
+.featured-text h1 {
+    font-size: 45px;
+    margin: 15px 0;
+    line-height: 1.1; /* jarak antar huruf (vertkal) */
+}
+
+.featured-text p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6; /* jarak antar huruf (vertikal) */
+    margin-bottom: 20px;
+}
+
+.meta {
+    font-size: 13px;
+    color: #888;
+}
+
+
+
+/* 2. GARIS PEMISAH BERITA */
+.divider {
+    border: none;
+    border-top: 1px solid #ccc; /* Cuma ngegaris abu-abu setipis 1px */
+    margin: 50px 0; /* Jarak atas bawah garisnya diluasin (kiri-kanan 0 biar gak kepotong) */
+}
+
+
+/* 3. ARTIKEL BAWAH */
+.article-grid {
+    display: flex; /* Jejerin 4 artikel ke samping */
+    gap: 30px; /* Spasi antar berita */
+}
+
+.card {
+    flex: 1; /* Bagi rata ukuran lebar buat ke-4 beritanya */
+}
+
+.card img {
+    width: 100%; /* Penuhin wadah */
+    aspect-ratio: 16/9; /* Memaksa semua rasio gambar jadi kotak TV (16:9) biar rata tingginya! */
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 20px; /* Lebih kecil dari H1 artikel utama */
+    margin: 10px 0;
+    line-height: 1.3;
+}
+
+
+
+
+
+/* 4. BRAIN BREAK SECTION */
+.brain-break-section {
+    display: flex; /* Bikin 2 kolom nyamping */
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+    background-color: #f9f9f9; /* Background tipis biar beda sama atasnya */
+    padding: 30px;
+}
+.bb-left {
+    flex: 1; /* Ambil jatah setengah */
+}
+.bb-left h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #111;
+}
+.bb-left p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.btn-bb {
+    background-color: #111;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-bb:hover {
+    background-color: #444;
+}
+.bb-right {
+    flex: 2; /* Kolom video dibikin lebih gede (2 jatah) */
+    aspect-ratio: 16/9; /* Memastikan proporsi video utuh */
+    min-width: 0;
+}
+.bb-right iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT (HP & TABLET)
+   ========================================= */
+@media (max-width: 1024px) {
+    .featured-article {
+        gap: 30px;
+    }
+    .featured-text h1 {
+        font-size: 36px;
+    }
+    .article-grid {
+        flex-wrap: wrap; /* 4 artikel jadi 2 x 2 */
+    }
+    .card {
+        flex: 1 1 calc(50% - 15px);
+    }
+    .bb-left h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 24px auto;
+    }
+    .featured-article {
+        flex-direction: column; /* Teks dan gambar numpuk atas-bawah */
+        align-items: stretch;
+    }
+    .featured-text h1 {
+        font-size: 30px;
+    }
+    .divider {
+        margin: 30px 0;
+    }
+    .article-grid {
+        flex-direction: column; /* Artikel dijejer numpuk ke bawah */
+    }
+    .card {
+        flex: none;
+    }
+    .brain-break-section {
+        flex-direction: column; /* Teks dan video ditumpuk */
+        align-items: stretch;
+        padding: 20px;
+        gap: 20px;
+    }
+    .bb-left h2 {
+        font-size: 24px;
+    }
+    .bb-right {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 14px;
+    }
+    .featured-text h1 {
+        font-size: 26px;
+    }
+    .btn-bb {
+        width: 100%;
+    }
+}
