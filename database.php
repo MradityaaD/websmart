@@ -1,9 +1,9 @@
 <?php
 
-$hostname = "sql102.infinityfree.com";
-$username = "if0_43267359";
-$password = "Dattebayo889"; // Sesuai password di kolom MYSQL PASSWORD
-$database_name = "if0_43267359_plengertosmart";
+$hostname = "";
+$username = "";
+$password = ""; // Sesuai password di kolom MYSQL PASSWORD
+$database_name = "";
 
 $db = mysqli_connect($hostname, $username, $password, $database_name);
 
