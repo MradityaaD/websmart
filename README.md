@@ -191,6 +191,12 @@ Versi ini masih **MVP**, jadi:
 
 ---
 
+## 👨‍💻 Pembuat
+
+**Muhammad Raditya Duta Pratama** — Kelas X PPLG 1
+
+---
+
 <p align="center">
   <b>PlengerToSmart</b>: Belajar gak perlu tegang, yang penting nyerap di otak! 🧠
 </p>
